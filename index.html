@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="./css/style.css" />
+		<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/SplitText.min.js"></script>
+		<script src="https://unpkg.com/lenis@1.3.8/dist/lenis.min.js"></script>
+
+		<script defer src="./js/gsap.js"></script>
+		<title>Guitar</title>
+	</head>
+	<body>
+		<audio id="metallica-song" loop>
+			<source src="./audio/output.mp3" type="audio/mpeg" />
+			!!!
+		</audio>
+		<header>
+			<div class="container__standart">
+				<div class="flex-between header__container">
+					<nav>
+						<ul class="flex-between">
+							<li><a href="#">ESP SNAKEBYTE</a></li>
+							<li><a href="#">Jackson King</a></li>
+							<li><a href="#">Dean ML “Dean from Hell”</a></li>
+						</ul>
+					</nav>
+					<div class="song-buttons">
+						<button id="muted__button">🔊</button>
+						<button id="volume-up">VOLUME +</button>
+						<button id="volume-down">VOLUME -</button>
+					</div>
+				</div>
+			</div>
+		</header>
+		<main>
+			<section id="hero__section" class="hero__section">
+				<img
+					id="metallica-guitar"
+					class="black"
+					src="./img/espBlack.png"
+					alt="" />
+				<div class="container__standart">
+					<h1 class="hero__title">Awaken the beasT<br /></h1>
+					<h1 class="hero__title-span">InsidE</h1>
+				</div>
+			</section>
+			<section id="esp__info-section" class="esp__info-section">
+				<div class="container__standart flex-between">
+					<div class="esp__dis">
+						<h2>esp snakebyte</h2>
+						<p>
+							This is a signature model developed in collaboration with James
+							Hetfield, frontman of Metallica. The guitar features an aggressive
+							aesthetic and is designed for the legendary rhythm playing style.
+						</p>
+					</div>
+					<div class="esp__photo">
+						<img src="./img/metallica/metallica1.png" alt="" />
+						<img src="./img/metallica/metallica2.png" alt="" />
+						<img src="./img/metallica/metallica3.png" alt="" />
+					</div>
+				</div>
+			</section>
+			<section id="section__video-metallica" class="section__video-metallica">
+				<video
+					id="metallica-video"
+					src="./img/metallica/video/video.mp4"
+					muted
+					loop></video>
+				<div class="video__content-metallica container__standart">
+					<div class="content__left-side">
+						<h2>esp snakebyte</h2>
+						<p>
+							In the hands of James Getfield at a concert in Santa Clara,
+							California, June 20, 2025
+						</p>
+					</div>
+					<div></div>
+				</div>
+			</section>
+		</main>
+		<footer>
+			<section></section>
+		</footer>
+	</body>
+</html>

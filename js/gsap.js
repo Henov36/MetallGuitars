@@ -135,20 +135,8 @@ window.addEventListener("DOMContentLoaded", () => {
 				: "top top",
 			scrub: 1,
 			// pin: true,
-			markers: true,
+			// markers: true,
 			onUpdate: (self) => {
-				// if (self.progress >= 0.95) {
-				// 	gsap.to(guitar, { opacity: 0, duration: 0.3 });
-				// 	metallicaVideo.currentTime = 0;
-				// 	metallicaVideo.play();
-				// 	videoPlayed = true;
-				// } else if (self.progress <= 0.8) {
-				// 	gsap.to(guitar, { opacity: 1, duration: 0.3 });
-				// 	metallicaVideo.pause();
-				// 	metallicaVideo.currentTime = 0;
-				// 	videoPlayed = false;
-				// } else {
-				// }
 				if (self.progress >= 1 && !videoPlayed) {
 					gsap.to(guitar, { opacity: 0, duration: 0.3 });
 					metallicaVideo.currentTime = 0;

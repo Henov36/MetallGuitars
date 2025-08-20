@@ -17,6 +17,14 @@
 			<source src="./audio/output.mp3" type="audio/mpeg" />
 			!!!
 		</audio>
+		<audio id="megadeath-song" loop>
+			<source src="./audio/megadeath/holywarsShort.mp3" type="audio/mpeg" />
+			!!!
+		</audio>
+		<audio id="pantera-song" loop>
+			<source src="./audio/pantera/dominationShort.mp3" type="audio/mpeg" />
+			!!!
+		</audio>
 		<header>
 			<div class="container__standart">
 				<div class="flex-between header__container">
@@ -24,65 +32,180 @@
 						<ul class="flex-between">
 							<li><a href="#">ESP SNAKEBYTE</a></li>
 							<li><a href="#">Jackson King</a></li>
-							<li><a href="#">Dean ML “Dean from Hell”</a></li>
+							<li>
+								<a href="#pantera-hero__section">Dean ML “Dean from Hell”</a>
+							</li>
 						</ul>
 					</nav>
-					<div class="song-buttons">
-						<button id="muted__button">🔊</button>
-						<button id="volume-up">VOLUME +</button>
-						<button id="volume-down">VOLUME -</button>
+					<div class="song-name">Metallica - Seek and Destroyed</div>
+					<div class="song-button flex-between">
+						<button id="muted__button">
+							<img id="muted__button-icon" src="./img/volumeIcon.png" alt="#" />
+						</button>
+						<input
+							type="range"
+							id="volume-slider"
+							min="0"
+							max="1"
+							step="0.01"
+							value="0.1" />
+						<!-- <button id="volume-up">VOLUME +</button>
+						<button id="volume-down">VOLUME -</button> -->
 					</div>
 				</div>
 			</div>
 		</header>
 		<main>
-			<section id="hero__section" class="hero__section">
-				<img
-					id="metallica-guitar"
-					class="black"
-					src="./img/espBlack.png"
-					alt="" />
-				<div class="container__standart">
-					<h1 class="hero__title">Awaken the beasT<br /></h1>
-					<h1 class="hero__title-span">InsidE</h1>
-				</div>
-			</section>
-			<section id="esp__info-section" class="esp__info-section">
-				<div class="container__standart flex-between">
-					<div class="esp__dis">
-						<h2>esp snakebyte</h2>
-						<p>
-							This is a signature model developed in collaboration with James
-							Hetfield, frontman of Metallica. The guitar features an aggressive
-							aesthetic and is designed for the legendary rhythm playing style.
-						</p>
+			<div class="metallica-group">
+				<section id="hero__section" class="hero__section">
+					<img
+						id="metallica-guitar"
+						class="black guitar-img"
+						src="./img/espBlack.png"
+						alt="" />
+					<div class="container__standart">
+						<h1 class="hero__title">Awaken the beasT<br /></h1>
+						<h1 class="hero__title-span">InsidE</h1>
 					</div>
-					<div class="esp__photo">
-						<img src="./img/metallica/metallica1.png" alt="" />
-						<img src="./img/metallica/metallica2.png" alt="" />
-						<img src="./img/metallica/metallica3.png" alt="" />
+				</section>
+				<section id="esp__info-section" class="esp__info-section">
+					<div class="container__standart flex-between">
+						<div id="esp__dis" class="esp__dis">
+							<h2>esp snakebyte</h2>
+							<p>
+								This is a signature model developed in collaboration with James
+								Hetfield, frontman of Metallica. The guitar features an
+								aggressive aesthetic and is designed for the legendary rhythm
+								playing style.
+							</p>
+						</div>
+						<div id="esp__photo" class="esp__photo">
+							<img src="./img/metallica/metallica1.png" alt="" />
+							<img src="./img/metallica/metallica2.png" alt="" />
+							<img src="./img/metallica/metallica3.png" alt="" />
+						</div>
 					</div>
-				</div>
-			</section>
-			<section id="section__video-metallica" class="section__video-metallica">
-				<video
-					id="metallica-video"
-					src="./img/metallica/video/video.mp4"
-					muted
-					playsinline
-					preload="auto"
-					loop></video>
-				<div class="video__content-metallica container__standart">
-					<div class="content__left-side">
-						<h2>esp snakebyte</h2>
-						<p>
-							In the hands of James Getfield at a concert in Santa Clara,
-							California, June 20, 2025
-						</p>
+				</section>
+				<section id="section__video-metallica" class="section__video-metallica">
+					<video
+						id="metallica-video"
+						src="./img/metallica/video/video.mp4"
+						muted
+						playsinline
+						preload="auto"
+						loop></video>
+					<div class="video__content-metallica container__standart">
+						<div class="content__left-side">
+							<h2>esp snakebyte</h2>
+							<p>
+								In the hands of James Getfield at a concert in Santa Clara,
+								California, June 20, 2025
+							</p>
+						</div>
+						<div></div>
 					</div>
-					<div></div>
-				</div>
-			</section>
+				</section>
+			</div>
+
+			<div class="megadeath-group">
+				<section id="section__hero-megadeath" class="section__hero-megadeath">
+					<div class="container__standart" style="overflow: hidden">
+						<img
+							id="megadeath-guitar"
+							class="black guitar-img"
+							src="./img/megaWhite.png"
+							alt="" />
+						<h1 class="hero__title-megadeath">Show your speed<br /></h1>
+						<h1 class="hero__title-span-megadeath">& power</h1>
+					</div>
+				</section>
+				<section id="jackson__info-section" class="jackson__info-section">
+					<div class="container__standart flex-between">
+						<div id="jackson__photo" class="esp__photo">
+							<img src="./img/megadeath/megadeath1.png" alt="" />
+							<img src="./img/megadeath/megadeath2.png" alt="" />
+							<img src="./img/megadeath/megadeath3.png" alt="" />
+						</div>
+						<div id="jackson__dis" class="esp__dis">
+							<h2>Jackson King V</h2>
+							<p>
+								The Jackson King V is a combination of aggression, individual
+								design, and playing comfort, created for speed and metal.<br />
+								Dave Mustaine played iconic tracks such as Tornado of Souls,
+								Holy Wars, and other compositions from the Rust in Peace era on
+								these very guitars.
+							</p>
+						</div>
+					</div>
+				</section>
+				<section id="section__video-megadeath" class="section__video-megadeath">
+					<video
+						id="megadeath-video"
+						src="./img/megadeath/video/megadeathvideoShort720.mp4"
+						muted
+						playsinline
+						preload="auto"
+						loop></video>
+					<div class="video__content-megadeath container__standart">
+						<div class="content__left-side">
+							<h2>Jackson King V</h2>
+							<p>
+								In the hands of Dave Mustaine in the music video for the iconic
+								“Holy Wars.”
+							</p>
+						</div>
+						<div></div>
+					</div>
+				</section>
+			</div>
+			<div class="pantera-group">
+				<section id="pantera-hero__section" class="pantera-hero__section">
+					<img
+						id="pantera-guitar"
+						class="black guitar-img"
+						src="./img/pantera-removebg-preview.png"
+						alt="" />
+					<div class="container__standart">
+						<h1 class="panter-hero__title">SHOW TRUE<br /></h1>
+						<h1 class="pantera-hero__title-span">DominatioN</h1>
+					</div>
+				</section>
+				<section id="dean-info__section" class="dean-info__section">
+					<div class="container__standart flex-between">
+						<div id="dean__dis" class="esp__dis">
+							<h2>Dean from helL</h2>
+							<p>
+								Dean ML “Dean from Hell” is one of the most iconic metal guitars
+								in history, primarily thanks to Dimebag Darrell from Pantera.
+							</p>
+						</div>
+						<div id="dean__photo" class="esp__photo">
+							<img src="./img/pantera/pantera1.png" alt="" />
+							<img src="./img/pantera/pantera2.png" alt="" />
+							<img src="./img/pantera/pantera3.png" alt="" />
+						</div>
+					</div>
+				</section>
+				<section id="section__video-pantera" class="section__video-pantera">
+					<video
+						id="pantera-video"
+						src="./img/pantera/video/dominationShort.mp4"
+						muted
+						playsinline
+						preload="auto"
+						loop></video>
+					<div class="video__content-pantera container__standart">
+						<div class="content__left-side">
+							<h2>Dean from helL</h2>
+							<p>
+								In the hands of Darrell Dimebag at the Monsters of Rock festival
+								in 1991, with the iconic song Domination.
+							</p>
+						</div>
+						<div></div>
+					</div>
+				</section>
+			</div>
 		</main>
 		<footer>
 			<section></section>

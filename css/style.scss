@@ -4,10 +4,19 @@
 	font-family: "Metallica Font";
 	src: url(../fonts/Pastor\ of\ Muppets.TTF);
 }
+@font-face {
+	font-family: "Megadeath Font";
+	src: url(../fonts/Megadeth.ttf);
+}
+@font-face {
+	font-family: "Pantera Font";
+	src: url(../fonts/PanterA.ttf);
+}
 
 :root {
 	--main-color: black;
 	--text-color: #fff;
+	--dark-blue: #01020e;
 }
 
 * {
@@ -15,7 +24,10 @@
 	padding: 0;
 	box-sizing: border-box;
 }
-
+body,
+html {
+	overflow-x: hidden;
+}
 body {
 	color: var(--text-color);
 	background-color: var(--main-color);
@@ -28,7 +40,17 @@ a {
 	color: var(--text-color);
 	text-decoration: none;
 }
-
+h1 {
+	font-size: 300px;
+	width: 100%;
+	font-weight: 400;
+	position: absolute;
+	text-align: center;
+	top: 35%;
+	left: 50%;
+	transform: translateX(-50%) translateY(-50%);
+	pointer-events: none;
+}
 h2 {
 	font-size: 100px;
 	font-family: "Metallica Font", sans-serif;
@@ -84,6 +106,41 @@ section {
 	display: inline-block;
 }
 
+.gradient-megadeath {
+	background: #fff700;
+	background: linear-gradient(
+		0deg,
+		rgba(255, 247, 0, 1) 32%,
+		rgba(255, 149, 0, 1) 48%,
+		rgba(255, 247, 0, 1) 64%
+	);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	background-clip: text;
+	// color: transparent;
+	// display: inline-block;
+}
+
+.content__left-side {
+	position: absolute;
+	top: 50%;
+	left: 0;
+	z-index: 2;
+	transform: translateY(-50%);
+	width: 30%;
+}
+
+video {
+	position: absolute;
+	top: 100px;
+	left: 0;
+	width: 100%;
+	height: calc(100vh - 100px);
+	z-index: 1;
+	filter: brightness(0.2);
+	object-fit: cover;
+}
+
 .header__container {
 	height: 100%;
 	li:not(:last-child) {
@@ -93,118 +150,169 @@ section {
 		font-family: "Oswald", sans-serif;
 		font-size: 24px;
 	}
+	.song-name {
+		display: none;
+		font-size: 32px;
+		font-family: "Oswald", sans-serif;
+		font-weight: 600;
+	}
 
-	.song-buttons {
+	.song-button {
 		button {
 			border: 2px solid var(--text-color);
 			padding: 20px;
 			color: var(--text-color);
 			border-radius: 50px;
+			margin-right: 10px;
+			& img {
+				width: 30px;
+			}
 		}
 	}
 }
-// Hero Section //
+input[type="range"] {
+	width: 300px;
+	height: 8px;
+	border-radius: 4px;
+	outline: none;
+	-webkit-appearance: none;
+	background: #d3d3d3;
+}
 
+input[type="range"]::-webkit-slider-thumb {
+	-webkit-appearance: none;
+	appearance: none;
+	width: 16px;
+	height: 16px;
+	border-radius: 50%;
+	background: #00bcd4;
+	cursor: pointer;
+	border: none;
+}
+
+input[type="range"]::-moz-range-thumb {
+	width: 16px;
+	height: 16px;
+	border-radius: 50%;
+	background: #00bcd4;
+	cursor: pointer;
+	border: none;
+}
+
+#volume-slider {
+	-webkit-appearance: none;
+	// appearance: none;
+	width: 150px;
+	height: 10px;
+	// background: linear-gradient(to right, rgb(30, 77, 32), gray); /* трек */
+	border-radius: 3px;
+	border: 1px solid white;
+}
+
+/* Chrome / Safari */
+#volume-slider::-webkit-slider-thumb {
+	-webkit-appearance: none;
+	appearance: none;
+	width: 50px;
+	height: 50px;
+	transform: rotate(0deg);
+	background: url("/img/volumeGuitar.png") no-repeat center;
+	background-size: cover;
+	border: none;
+	cursor: pointer;
+}
+
+/* Firefox */
+#volume-slider::-moz-range-thumb {
+	width: 30px;
+	height: 30px;
+	background: url("/img/volumeGuitar.svg") no-repeat center;
+	background-size: cover;
+	border: none;
+	cursor: pointer;
+}
+// Hero Section //
+.guitar-img {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translateX(-50%) translateY(-50%) rotate(-45deg);
+	z-index: 2;
+	cursor: pointer;
+}
 .hero__section {
 	background: var(--main-color);
 	& h1 {
 		font-family: "Metallica Font", sans-serif;
-		font-size: 300px;
-		width: 100%;
-		font-weight: 400;
-		position: absolute;
-		text-align: center;
-		top: 35%;
-		left: 50%;
-		transform: translateX(-50%) translateY(-50%);
-		pointer-events: none;
+		// font-size: 300px;
+		// width: 100%;
+		// font-weight: 400;
+		// position: absolute;
+		// text-align: center;
+		// top: 35%;
+		// left: 50%;
+		// transform: translateX(-50%) translateY(-50%);
+		// pointer-events: none;
 	}
 	.hero__title-span {
 		top: 50%;
 		z-index: 3;
 	}
-	& img {
-		position: absolute;
-		top: 50%;
-		left: 50%;
-		transform: translateX(-50%) translateY(-50%) rotate(-45deg);
-		z-index: 2;
-		cursor: pointer;
-	}
 }
 
 //==== Hero info
+.esp__photo {
+	width: 40%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	& img {
+		width: 250px;
+	}
+	:not(:first-child) {
+		margin-top: -30px;
+	}
 
+	:first-child {
+		transform: rotate(-20deg);
+		box-shadow: 0px 0px 72px 7px rgba(99, 102, 146, 0.75);
+		-webkit-box-shadow: 0px 0px 72px 7px rgba(99, 102, 146, 0.75);
+		-moz-box-shadow: 0px 0px 72px 7px rgba(99, 102, 146, 0.75);
+	}
+	:nth-child(2) {
+		transform: translateX(100px);
+		box-shadow: 0px 0px 72px 7px rgba(127, 124, 114, 0.75);
+		-webkit-box-shadow: 0px 0px 72px 7px rgba(127, 124, 114, 0.75);
+		-moz-box-shadow: 0px 0px 72px 7px rgba(127, 124, 114, 0.75);
+	}
+	:last-child {
+		transform: translateX(200px) rotate(20deg);
+		box-shadow: 0px 0px 72px 7px rgba(38, 36, 39, 0.75);
+		-webkit-box-shadow: 0px 0px 72px 7px rgba(38, 36, 39, 0.75);
+		-moz-box-shadow: 0px 0px 72px 7px rgba(38, 36, 39, 0.75);
+	}
+}
+.esp__dis {
+	width: 40%;
+
+	& p {
+		font-size: 24px;
+		font-family: "Oswald", sans-serif;
+	}
+}
 .esp__info-section {
 	background-color: var(--main-color);
 	// background-color: aliceblue;
 	overflow: hidden;
-
-	.esp__dis {
-		width: 40%;
-
-		& p {
-			font-size: 24px;
-			font-family: "Oswald", sans-serif;
-		}
-	}
-	.esp__photo {
-		width: 40%;
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		& img {
-			width: 250px;
-		}
-		:not(:first-child) {
-			margin-top: -30px;
-		}
-
-		:first-child {
-			transform: rotate(-20deg);
-			box-shadow: 0px 0px 72px 7px rgba(99, 102, 146, 0.75);
-			-webkit-box-shadow: 0px 0px 72px 7px rgba(99, 102, 146, 0.75);
-			-moz-box-shadow: 0px 0px 72px 7px rgba(99, 102, 146, 0.75);
-		}
-		:nth-child(2) {
-			transform: translateX(100px);
-			box-shadow: 0px 0px 72px 7px rgba(127, 124, 114, 0.75);
-			-webkit-box-shadow: 0px 0px 72px 7px rgba(127, 124, 114, 0.75);
-			-moz-box-shadow: 0px 0px 72px 7px rgba(127, 124, 114, 0.75);
-		}
-		:last-child {
-			transform: translateX(200px) rotate(20deg);
-			box-shadow: 0px 0px 72px 7px rgba(38, 36, 39, 0.75);
-			-webkit-box-shadow: 0px 0px 72px 7px rgba(38, 36, 39, 0.75);
-			-moz-box-shadow: 0px 0px 72px 7px rgba(38, 36, 39, 0.75);
-		}
-	}
 }
 
 // ====
 
 .section__video-metallica {
-	& video {
-		position: absolute;
-		top: 100px;
-		left: 0;
-		width: 100%;
-		height: calc(100vh - 100px);
-		z-index: 1;
-		filter: brightness(0.2);
-		object-fit: cover;
-	}
 	.video__content-metallica {
 		position: relative;
 		min-height: 100vh;
-		.content__left-side {
-			position: absolute;
-			top: 50%;
-			left: 0;
-			z-index: 2;
-			transform: translateY(-50%);
-			width: 30%;
-		}
+
 		& p {
 			font-size: 24px;
 			font-family: "Oswald", sans-serif;
@@ -212,21 +320,150 @@ section {
 	}
 }
 
+//===========
+.section__hero-megadeath {
+	background-color: var(--dark-blue);
+	& h1 {
+		font-family: "Megadeath Font", sans-serif;
+		font-size: 200px;
+		font-weight: bold;
+	}
+	& div {
+		overflow: hidden;
+	}
+	.guitar-img {
+		transform: translateX(-50%) translateY(-50%) rotate(-30deg);
+		top: 45%;
+	}
+	.hero__title-span-megadeath {
+		top: 60%;
+		z-index: 3;
+		left: 65%;
+	}
+}
+.jackson__info-section {
+	background-color: var(--dark-blue);
+	& h2 {
+		font-family: "Megadeath Font", sans-serif;
+		font-size: 80px;
+		text-align: center;
+	}
+
+	& .esp__photo {
+		:first-child {
+			transform: translateX(50px) rotate(-20deg);
+		}
+		:nth-child(2) {
+			transform: translateX(-100px);
+		}
+		:last-child {
+			transform: translateX(0px) rotate(20deg);
+			box-shadow: 0px 0px 19px 6px rgba(120, 93, 132, 0.75);
+			-webkit-box-shadow: 0px 0px 19px 6px rgba(120, 93, 132, 0.75);
+			-moz-box-shadow: 0px 0px 19px 6px rgba(120, 93, 132, 0.75);
+		}
+	}
+}
+
+.section__video-megadeath {
+	background-color: var(--main-color);
+	.video__content-megadeath {
+		min-height: calc(100vh - 100px);
+		position: relative;
+		.content__left-side {
+			width: 40%;
+		}
+	}
+	.content__left-side {
+		& h2 {
+			font-family: "Megadeath Font", sans-serif;
+		}
+		& p {
+			font-family: "Oswald", sans-serif;
+			font-size: 26px;
+		}
+	}
+}
+
+.pantera-hero__section {
+	& h1 {
+		font-family: "Pantera Font", sans-serif;
+		font-size: 250px;
+	}
+	background-color: var(--main-color);
+	& div {
+		overflow: hidden;
+	}
+	.guitar-img {
+		transform: translateX(-50%) translateY(-50%) rotate(60deg);
+		top: 50%;
+	}
+	.pantera-hero__title-span {
+		top: 60%;
+		z-index: 3;
+		left: 65%;
+		color: red;
+	}
+}
+.dean-info__section {
+	.esp__dis {
+		& h2 {
+			font-family: "Pantera Font", sans-serif;
+		}
+	}
+}
+.section__video-pantera {
+	& video {
+		object-fit: contain;
+	}
+	.video__content-pantera {
+		position: relative;
+		min-height: 100vh;
+		& h2 {
+			font-family: "Pantera Font", sans-serif;
+		}
+		.content__left-side {
+			width: 50%;
+			& p {
+				width: 45%;
+				font-family: "Oswald", sans-serif;
+				font-size: 26px;
+			}
+		}
+	}
+}
+
+//===========
+
 @media (max-width: 1921px) {
+	.guitar-img {
+		width: 900px;
+	}
 	.hero__section {
 		& h1 {
 			font-size: 250px;
 		}
-		& img {
-			width: 900px;
+	}
+	.section__hero-megadeath {
+		& h1 {
+			font-size: 160px;
+		}
+	}
+	.pantera-hero__section {
+		.guitar-img {
+			width: 400px;
+		}
+	}
+	.dean-info__section {
+		.esp__photo {
+			& img {
+				width: 200px;
+			}
 		}
 	}
 }
 
 @media (max-width: 1441px) {
-	.hero__section {
-	}
-
 	.esp__info-section {
 		.esp__photo {
 			& img {
@@ -240,6 +477,21 @@ section {
 	.section__video-metallica {
 		padding: 0;
 	}
+	.dean-info__section {
+		.esp__photo {
+			& img {
+				width: 160px;
+			}
+			:last-child {
+				transform: translateX(0) rotate(30deg);
+			}
+		}
+		.esp__dis {
+			& h2 {
+				font-size: 88px;
+			}
+		}
+	}
 }
 
 @media (max-width: 1025px) {
@@ -247,8 +499,14 @@ section {
 		& h1 {
 			font-size: 160px;
 		}
-		& img {
+		.guitar-img {
 			width: 800px;
+		}
+	}
+
+	.section__hero-megadeath {
+		& h1 {
+			font-size: 100px;
 		}
 	}
 
@@ -277,17 +535,103 @@ section {
 			}
 		}
 	}
+
+	.jackson__info-section {
+		.esp__photo {
+			:nth-child(2) {
+				transform: translateX(-50px);
+			}
+		}
+
+		& h2 {
+			font-size: 60px;
+		}
+	}
+	.section__video-megadeath {
+		& h2 {
+			font-size: 60px;
+			text-align: center;
+		}
+	}
+	.pantera-hero__section {
+		& h1 {
+			font-size: 200px;
+		}
+	}
 }
 
 @media (max-width: 769px) {
+	.header__container {
+		& nav {
+			display: none;
+		}
+		.song-name {
+			display: block;
+		}
+	}
 	.hero__section {
 		& h1 {
 			font-size: 120px;
 		}
 	}
+	.section__hero-megadeath {
+		& h1 {
+			font-size: 70px;
+		}
+	}
+	.jackson__info-section {
+		.esp__dis {
+			& h2 {
+				text-align: end;
+			}
+
+			& p {
+				text-align: end;
+			}
+		}
+	}
+	.pantera-hero__section {
+		& h1 {
+			font-size: 150px;
+		}
+		.guitar-img {
+			width: 300px;
+		}
+	}
+
+	.dean-info__section {
+		.esp__dis {
+			& h2 {
+				font-size: 60px;
+			}
+		}
+	}
+	.section__video-pantera {
+		.video__content-pantera {
+			& h2 {
+				font-size: 80px;
+			}
+			.content__left-side {
+				width: 70%;
+			}
+		}
+	}
 }
 
 @media (max-width: 500px) {
+	#volume-slider {
+		width: 100px;
+	}
+	.header__container {
+		.song-name {
+			font-size: 20px;
+		}
+		.song-button {
+			button {
+			padding: 10px;
+			}
+		}
+	}
 	.hero__section {
 		padding-bottom: 0px;
 	}
@@ -297,9 +641,9 @@ section {
 	}
 	.hero__section {
 		& h1 {
-			font-size: 78px;
+			font-size: 70px;
 		}
-		& img {
+		.guitar-img {
 			width: 500px;
 			transform: translateX(-50%) translateY(-50%) rotate(-60deg);
 		}
@@ -331,6 +675,75 @@ section {
 		.video__content-metallica {
 			.content__left-side {
 				left: 20px;
+			}
+		}
+	}
+
+	.section__hero-megadeath {
+		& h1 {
+			font-size: 70px;
+		}
+		.guitar-img {
+			width: 600px;
+			transform: translateX(-50%) translateY(-50%) rotate(-70deg);
+		}
+	}
+	.jackson__info-section {
+		min-height: fit-content;
+		& h2 {
+			font-size: 40px;
+		}
+		& p {
+			font-size: 18px;
+		}
+		.esp__photo {
+			img {
+				width: 160px;
+			}
+			:nth-child(2) {
+				transform: translateX(0px);
+			}
+			:nth-child(3) {
+				margin-top: 0;
+			}
+		}
+	}
+	.pantera-hero__section {
+		& h1 {
+			font-size: 100px;
+		}
+		.guitar-img {
+			width: 200px;
+			transform: translateX(-50%) translateY(-50%) rotate(20deg);
+		}
+		.pantera-hero__title-span {
+			left: 50%;
+		}
+	}
+	.dean-info__section {
+		.esp__dis {
+			width: 50%;
+			position: relative;
+			z-index: 3;
+			& h2 {
+				font-size: 54px;
+				text-align: center;
+			}
+		}
+		.esp__photo {
+			:nth-child(2) {
+				transform: translateX(0) !important;
+			}
+		}
+	}
+	.section__video-pantera {
+		.video__content-pantera {
+			.content__left-side {
+				top: 5%;
+				width: 100%;
+				& p {
+					width: 80%;
+				}
 			}
 		}
 	}

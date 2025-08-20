@@ -151,7 +151,6 @@ video {
 		font-size: 24px;
 	}
 	.song-name {
-		display: none;
 		font-size: 32px;
 		font-family: "Oswald", sans-serif;
 		font-weight: 600;
@@ -169,34 +168,6 @@ video {
 			}
 		}
 	}
-}
-input[type="range"] {
-	width: 300px;
-	height: 8px;
-	border-radius: 4px;
-	outline: none;
-	-webkit-appearance: none;
-	background: #d3d3d3;
-}
-
-input[type="range"]::-webkit-slider-thumb {
-	-webkit-appearance: none;
-	appearance: none;
-	width: 16px;
-	height: 16px;
-	border-radius: 50%;
-	background: #00bcd4;
-	cursor: pointer;
-	border: none;
-}
-
-input[type="range"]::-moz-range-thumb {
-	width: 16px;
-	height: 16px;
-	border-radius: 50%;
-	background: #00bcd4;
-	cursor: pointer;
-	border: none;
 }
 
 #volume-slider {
@@ -561,12 +532,12 @@ input[type="range"]::-moz-range-thumb {
 }
 
 @media (max-width: 769px) {
+	#volume-slider {
+		display: none;
+	}
 	.header__container {
 		& nav {
 			display: none;
-		}
-		.song-name {
-			display: block;
 		}
 	}
 	.hero__section {

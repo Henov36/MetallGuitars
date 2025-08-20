@@ -15,8 +15,22 @@ if ("scrollRestoration" in history) {
 	history.scrollRestoration = "manual";
 }
 window.scrollTo(0, 0);
+
 window.addEventListener("DOMContentLoaded", () => {
 	gsap.registerPlugin(ScrollTrigger, SplitText);
+
+	// const videos = document.querySelectorAll("video");
+
+	// videos.forEach((video) => {
+	// 	video.muted = true; // важно для мобильных браузеров
+	// 	video
+	// 		.play()
+	// 		.then(() => {
+	// 			video.pause();
+	// 			video.currentTime = 0;
+	// 		})
+	// 		.catch((err) => console.log("Видео не удалось запустить:", err));
+	// });
 
 	const lenis = new Lenis({
 		duration: 3,
@@ -124,6 +138,14 @@ window.addEventListener("DOMContentLoaded", () => {
 		});
 	let videoPlayed = false;
 	const metallicaVideo = document.getElementById("metallica-video");
+	metallicaVideo.muted = true; // важно для мобильных
+	metallicaVideo
+		.play()
+		.then(() => {
+			metallicaVideo.pause();
+			metallicaVideo.currentTime = 0;
+		})
+		.catch((err) => console.log("Не удалось запустить видео:", err));
 	const guitarToTimeline = gsap.timeline({
 		scrollTrigger: {
 			trigger: "#section__video-metallica",
@@ -307,6 +329,15 @@ window.addEventListener("DOMContentLoaded", () => {
 	let megadeathVideoPlayed = false;
 	const megadeathGuitar = document.getElementById("megadeath-guitar");
 	const megadeathVideo = document.getElementById("megadeath-video");
+
+	megadeathVideo.muted = true; // важно для мобильных
+	megadeathVideo
+		.play()
+		.then(() => {
+			megadeathVideo.pause();
+			megadeathVideo.currentTime = 0;
+		})
+		.catch((err) => console.log("Не удалось запустить видео:", err));
 	const MegadeathGuitarToTimeline = gsap.timeline({
 		scrollTrigger: {
 			trigger: "#section__video-megadeath",
@@ -485,6 +516,15 @@ window.addEventListener("DOMContentLoaded", () => {
 	let panteraVideoPlayed = false;
 	const panteraGuitar = document.getElementById("pantera-guitar");
 	const panteraVideo = document.getElementById("pantera-video");
+
+	panteraVideo.muted = true; // важно для мобильных
+	panteraVideo
+		.play()
+		.then(() => {
+			panteraVideo.pause();
+			panteraVideo.currentTime = 0;
+		})
+		.catch((err) => console.log("Не удалось запустить видео:", err));
 	const PanteraGuitarToTimeline = gsap.timeline({
 		scrollTrigger: {
 			trigger: "#section__video-pantera",
@@ -640,17 +680,26 @@ window.addEventListener("DOMContentLoaded", () => {
 		track.pause();
 	});
 
+	// флаг, чтобы музыка стартовала только после клика
 	let started = false;
 	document.addEventListener("click", () => {
 		if (!started) {
-			// ищем группу, которая сейчас в зоне видимости
+			// разрешаем все треки для будущих crossfade
+			Object.values(tracks).forEach((track) => {
+				track.muted = true; // важно для автоплей на мобилке
+				track.play();
+				track.pause();
+				track.currentTime = 0;
+				track.muted = false; // после инициализации можно включить звук для crossfade
+			});
+
+			// Определяем активную группу на экране
 			const groups = ["metallica", "megadeath", "pantera"];
-			let activeGroup = groups[0]; // по умолчанию metallica
+			let activeGroup = groups[0];
 
 			groups.forEach((group) => {
 				const el = document.querySelector(`.${group}-group`);
 				const rect = el.getBoundingClientRect();
-				// если середина группы попадает в viewport → считаем активной
 				if (
 					rect.top < window.innerHeight / 2 &&
 					rect.bottom > window.innerHeight / 2
@@ -659,14 +708,12 @@ window.addEventListener("DOMContentLoaded", () => {
 				}
 			});
 
-			// запускаем ту песню, которая соответствует текущей группе
 			crossfade(activeGroup);
 
 			started = true;
 		}
 	});
 
-	// функция плавного переключения треков
 	function crossfade(toPlay) {
 		Object.entries(tracks).forEach(([name, track]) => {
 			if (name === toPlay) {
@@ -707,141 +754,6 @@ window.addEventListener("DOMContentLoaded", () => {
 		});
 	});
 
-	// let currentVolume = 0.1;
-	// let currentSong = null;
-	// const songName = document.querySelector(".song-name");
-	// const tracks = {
-	// 	metallica: document.getElementById("metallica-song"),
-	// 	megadeath: document.getElementById("megadeath-song"),
-	// 	pantera: document.getElementById("pantera-song"),
-	// };
-
-	// // начальная громкость
-	// Object.values(tracks).forEach((track) => {
-	// 	track.volume = 0;
-	// 	track.pause();
-	// });
-
-	// // флаг, чтобы музыка стартовала только после клика
-	// let started = false;
-	// document.addEventListener("click", () => {
-	// 	if (!started) {
-	// 		// Запускаем только первый трек
-	// 		const firstTrack = tracks.metallica;
-	// 		firstTrack.play();
-	// 		firstTrack.volume = currentVolume;
-	// 		currentSong = firstTrack;
-	// 		songName.textContent = "Metallica - Seek and Destroyed";
-
-	// 		started = true;
-	// 	}
-	// });
-
-	// // функция плавного переключения треков
-	// function crossfade(toPlay) {
-	// 	Object.entries(tracks).forEach(([name, track]) => {
-	// 		if (name === toPlay) {
-	// 			currentSong = track;
-	// 			// если трек ещё не был запущен
-	// 			if (track.paused) track.play();
-
-	// 			songName.textContent =
-	// 				name === "metallica"
-	// 					? "Metallica - Seek and Destroyed"
-	// 					: name === "megadeath"
-	// 					? "Megadeath - Holy Wars"
-	// 					: "Pantera - Domination";
-
-	// 			gsap.to(track, {
-	// 				volume: currentVolume,
-	// 				duration: 1.5,
-	// 				ease: "power2.out",
-	// 			});
-	// 		} else {
-	// 			gsap.to(track, {
-	// 				volume: 0,
-	// 				duration: 1.5,
-	// 				ease: "power2.out",
-	// 				onComplete: () => track.pause(),
-	// 			});
-	// 		}
-	// 	});
-	// }
-
-	// // ScrollTrigger для каждой группы
-	// ["metallica", "megadeath", "pantera"].forEach((group) => {
-	// 	ScrollTrigger.create({
-	// 		trigger: `.${group}-group`,
-	// 		start: "top center",
-	// 		end: "bottom center",
-	// 		onEnter: () => crossfade(group),
-	// 		onEnterBack: () => crossfade(group),
-	// 	});
-	// });
-
-	// let currentVolume = 0.1;
-	// let currentSong = null; // сюда пишем активный трек
-	// const songName = document.querySelector(".song-name");
-	// const tracks = {
-	// 	metallica: document.getElementById("metallica-song"),
-	// 	megadeath: document.getElementById("megadeath-song"),
-	// 	pantera: document.getElementById("pantera-song"),
-	// };
-
-	// // начальная громкость
-	// Object.values(tracks).forEach((track) => {
-	// 	track.volume = 0;
-	// });
-
-	// // флаг, чтобы музыка стартовала только после клика
-	// let started = false;
-	// document.addEventListener("click", () => {
-	// 	if (!started) {
-	// 		Object.values(tracks).forEach((track) => track.play());
-	// 		started = true;
-	// 	}
-	// });
-
-	// // функция плавного переключения треков
-	// function crossfade(toPlay) {
-	// 	Object.entries(tracks).forEach(([name, track]) => {
-	// 		if (name === toPlay) {
-	// 			currentSong = track;
-	// 			track.play();
-	// 			name === "metallica"
-	// 				? (songName.textContent = "Metallica - Seek and Destroyed")
-	// 				: name === "megadeath"
-	// 				? (songName.textContent = "Megadeath - Holy Wars")
-	// 				: (songName.textContent = "Pantera - Domination");
-
-	// 			// громкость всегда тянем к текущему значению слайдера
-	// 			gsap.to(track, {
-	// 				volume: currentVolume,
-	// 				duration: 1.5,
-	// 				ease: "power2.out",
-	// 			});
-	// 		} else {
-	// 			gsap.to(track, {
-	// 				volume: 0,
-	// 				duration: 1.5,
-	// 				ease: "power2.out",
-	// 				onComplete: () => track.pause(),
-	// 			});
-	// 		}
-	// 	});
-	// }
-
-	// // ScrollTrigger для каждой группы
-	// ["metallica", "megadeath", "pantera"].forEach((group) => {
-	// 	ScrollTrigger.create({
-	// 		trigger: `.${group}-group`, // класс секций группы
-	// 		start: "top center",
-	// 		end: "bottom center",
-	// 		onEnter: () => crossfade(group),
-	// 		onEnterBack: () => crossfade(group),
-	// 	});
-	// });
-
 	// mute
 	mutedButton.addEventListener("click", () => {
 		if (currentSong) {
@@ -878,85 +790,6 @@ window.addEventListener("DOMContentLoaded", () => {
 			}
 		}
 	});
-
-	// const mutedButton = document.getElementById("muted__button");
-	// const volumeUpButton = document.getElementById("volume-up");
-	// const volumeDownButton = document.getElementById("volume-down");
-
-	// let currentVolume = 0.1;
-
-	// const tracks = {
-	// 	metallica: document.getElementById("metallica-song"),
-	// 	megadeath: document.getElementById("megadeath-song"),
-	// 	pantera: document.getElementById("pantera-song"),
-	// };
-
-	// // начальная громкость
-	// Object.values(tracks).forEach((track) => {
-	// 	track.volume = 0;
-	// });
-
-	// // флаг, чтобы музыка стартовала только после клика
-	// let started = false;
-	// document.addEventListener("click", () => {
-	// 	if (!started) {
-	// 		Object.values(tracks).forEach((track) => track.play());
-	// 		started = true;
-	// 	}
-	// });
-
-	// // функция плавного переключения треков
-	// function crossfade(toPlay) {
-	// 	Object.entries(tracks).forEach(([name, track]) => {
-	// 		if (name === toPlay) {
-	// 			currentSong = track; // обновляем активный трек
-	// 			track.play();
-	// 			gsap.to(track, {
-	// 				volume: currentVolume,
-	// 				duration: 1.5,
-	// 				ease: "power2.out",
-	// 			});
-	// 		} else {
-	// 			gsap.to(track, {
-	// 				volume: 0,
-	// 				duration: 1.5,
-	// 				ease: "power2.out",
-	// 				onComplete: () => track.pause(),
-	// 			});
-	// 		}
-	// 	});
-	// }
-
-	// // ScrollTrigger для каждой группы
-	// ["metallica", "megadeath", "pantera"].forEach((group) => {
-	// 	ScrollTrigger.create({
-	// 		trigger: `.${group}-group`, // класс секций группы
-	// 		start: "top center",
-	// 		end: "bottom center",
-	// 		onEnter: () => crossfade(group),
-	// 		onEnterBack: () => crossfade(group),
-	// 	});
-	// });
-	// mutedButton.addEventListener("click", () => {
-	// 	if (currentSong) {
-	// 		currentSong.muted = !currentSong.muted;
-	// 		mutedButton.textContent = currentSong.muted ? "🔇" : "🔊";
-	// 	}
-	// });
-
-	// volumeUpButton.addEventListener("click", () => {
-	// 	if (currentSong && currentSong.volume < 1) {
-	// 		currentVolume = Math.min(currentVolume + 0.1, 1);
-	// 		currentSong.volume = currentVolume;
-	// 	}
-	// });
-
-	// volumeDownButton.addEventListener("click", () => {
-	// 	if (currentSong && currentSong.volume > 0) {
-	// 		currentVolume = Math.max(currentVolume - 0.1, 0);
-	// 		currentSong.volume = currentVolume;
-	// 	}
-	// });
 	const slider = document.getElementById("volume-slider");
 
 	function updateBackground() {

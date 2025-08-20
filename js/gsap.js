@@ -139,97 +139,87 @@ window.addEventListener("DOMContentLoaded", () => {
 	let videoPlayed = false;
 	const metallicaVideo = document.getElementById("metallica-video");
 	metallicaVideo.muted = true; // важно для мобильных
-	// metallicaVideo
-	// 	.play()
-	// 	.then(() => {
-	// 		metallicaVideo.pause();
-	// 		metallicaVideo.currentTime = 0;
-	// 	})
-	// 	.catch((err) => console.log("Не удалось запустить видео:", err));
-	metallicaVideo.onloadedmetadata = () => {
-		const duration = metallicaVideo.duration || 10;
-		metallicaVideo.currentTime = 0.01;
-		if (IsMobile || IsMediumMobile || IsSmallMobile) {
-			metallicaVideo.play().then(() => {
-				metallicaVideo.pause();
-				metallicaVideo.currentTime = 0;
-			});
-		}
+	metallicaVideo
+		.play()
+		.then(() => {
+			metallicaVideo.pause();
+			metallicaVideo.currentTime = 0;
+		})
+		.catch((err) => console.log("Не удалось запустить видео:", err));
 
-		const guitarToTimeline = gsap.timeline({
-			scrollTrigger: {
-				trigger: "#section__video-metallica",
-				start: IsSmallMobile
-					? "5% 75%"
-					: IsMediumMobile
-					? "5% 75%"
-					: IsMobile
-					? "5% 85%"
-					: "5% bottom",
-				end: IsSmallMobile
-					? "top 22%"
-					: IsMediumMobile
-					? "top 20%"
-					: IsMobile
-					? "top 15%"
-					: IsLaptope
-					? "10% 25%"
-					: "top top",
-				scrub: 1,
-				// pin: true,
-				// markers: true,
-				onUpdate: (self) => {
-					if (self.progress >= 1 && !videoPlayed) {
-						gsap.to(guitar, { opacity: 0, duration: 0.3 });
-						metallicaVideo.currentTime = 0;
-						guitar.style.pointerEvents = "none";
-						metallicaVideo.play();
-						videoPlayed = true;
-					} else if (self.progress <= 0.8) {
-						gsap.to(guitar, { opacity: 1, duration: 0.3 });
-						guitar.style.pointerEvents = "auto";
-						metallicaVideo.pause();
-						metallicaVideo.currentTime = 0;
-						videoPlayed = false;
-					}
-				},
-			},
-		});
-
-		guitarToTimeline.to("#metallica-guitar", {
-			yPercent: IsSmallMobile
-				? "+=305"
+	const guitarToTimeline = gsap.timeline({
+		scrollTrigger: {
+			trigger: "#section__video-metallica",
+			start: IsSmallMobile
+				? "5% 75%"
 				: IsMediumMobile
-				? "+=320"
+				? "5% 75%"
 				: IsMobile
-				? "+=325"
-				: IsMedium
-				? "+=240"
-				: IsBigScreen || IsLaptope
-				? "+=210"
-				: "+=260",
-			scale:
-				IsMediumMobile || IsSmallMobile
-					? 1
-					: IsLaptope
-					? 0.6
-					: IsMedium
-					? 0.5
-					: 0.7,
-			rotation: -40,
-
-			x: 60,
-			// transformOrigin: "center center",
-			onStart: () => {
-				const guitar = document.getElementById("metallica-guitar");
-
-				if (guitar.classList.contains("black")) {
-					guitar.src = "./img/espWhite.png";
-					guitar.classList.remove("black");
+				? "5% 85%"
+				: "5% bottom",
+			end: IsSmallMobile
+				? "top 22%"
+				: IsMediumMobile
+				? "top 20%"
+				: IsMobile
+				? "top 15%"
+				: IsLaptope
+				? "10% 25%"
+				: "top top",
+			scrub: 1,
+			// pin: true,
+			// markers: true,
+			onUpdate: (self) => {
+				if (self.progress >= 1 && !videoPlayed) {
+					gsap.to(guitar, { opacity: 0, duration: 0.3 });
+					metallicaVideo.currentTime = 0;
+					guitar.style.pointerEvents = "none";
+					metallicaVideo.play();
+					videoPlayed = true;
+				} else if (self.progress <= 0.8) {
+					gsap.to(guitar, { opacity: 1, duration: 0.3 });
+					guitar.style.pointerEvents = "auto";
+					metallicaVideo.pause();
+					metallicaVideo.currentTime = 0;
+					videoPlayed = false;
 				}
 			},
-		});
-	};
+		},
+	});
+
+	guitarToTimeline.to("#metallica-guitar", {
+		yPercent: IsSmallMobile
+			? "+=305"
+			: IsMediumMobile
+			? "+=320"
+			: IsMobile
+			? "+=325"
+			: IsMedium
+			? "+=240"
+			: IsBigScreen || IsLaptope
+			? "+=210"
+			: "+=260",
+		scale:
+			IsMediumMobile || IsSmallMobile
+				? 1
+				: IsLaptope
+				? 0.6
+				: IsMedium
+				? 0.5
+				: 0.7,
+		rotation: -40,
+
+		x: 60,
+		// transformOrigin: "center center",
+		onStart: () => {
+			const guitar = document.getElementById("metallica-guitar");
+
+			if (guitar.classList.contains("black")) {
+				guitar.src = "./img/espWhite.png";
+				guitar.classList.remove("black");
+			}
+		},
+	});
 
 	//==== MEGADEATH
 

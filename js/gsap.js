@@ -265,7 +265,7 @@ window.addEventListener("DOMContentLoaded", () => {
 		yPercent: IsSmallMobile
 			? "+=360"
 			: IsMediumMobile
-			? "+=400"
+			? "+=380"
 			: IsMobile
 			? "+=290"
 			: IsLaptope
@@ -626,7 +626,7 @@ window.addEventListener("DOMContentLoaded", () => {
 	const volumeSlider = document.getElementById("volume-slider");
 
 	let currentVolume = 0.1;
-	let currentSong = null; // сюда пишем активный трек
+	let currentSong = null;
 	const songName = document.querySelector(".song-name");
 	const tracks = {
 		metallica: document.getElementById("metallica-song"),
@@ -637,13 +637,31 @@ window.addEventListener("DOMContentLoaded", () => {
 	// начальная громкость
 	Object.values(tracks).forEach((track) => {
 		track.volume = 0;
+		track.pause();
 	});
 
-	// флаг, чтобы музыка стартовала только после клика
 	let started = false;
 	document.addEventListener("click", () => {
 		if (!started) {
-			Object.values(tracks).forEach((track) => track.play());
+			// ищем группу, которая сейчас в зоне видимости
+			const groups = ["metallica", "megadeath", "pantera"];
+			let activeGroup = groups[0]; // по умолчанию metallica
+
+			groups.forEach((group) => {
+				const el = document.querySelector(`.${group}-group`);
+				const rect = el.getBoundingClientRect();
+				// если середина группы попадает в viewport → считаем активной
+				if (
+					rect.top < window.innerHeight / 2 &&
+					rect.bottom > window.innerHeight / 2
+				) {
+					activeGroup = group;
+				}
+			});
+
+			// запускаем ту песню, которая соответствует текущей группе
+			crossfade(activeGroup);
+
 			started = true;
 		}
 	});
@@ -653,14 +671,15 @@ window.addEventListener("DOMContentLoaded", () => {
 		Object.entries(tracks).forEach(([name, track]) => {
 			if (name === toPlay) {
 				currentSong = track;
-				track.play();
-				name === "metallica"
-					? (songName.textContent = "Metallica - Seek and Destroyed")
-					: name === "megadeath"
-					? (songName.textContent = "Megadeath - Holy Wars")
-					: (songName.textContent = "Pantera - Domination");
+				if (track.paused) track.play();
 
-				// громкость всегда тянем к текущему значению слайдера
+				songName.textContent =
+					name === "metallica"
+						? "Metallica - Seek and Destroyed"
+						: name === "megadeath"
+						? "Megadeath - Holy Wars"
+						: "Pantera - Domination";
+
 				gsap.to(track, {
 					volume: currentVolume,
 					duration: 1.5,
@@ -680,13 +699,148 @@ window.addEventListener("DOMContentLoaded", () => {
 	// ScrollTrigger для каждой группы
 	["metallica", "megadeath", "pantera"].forEach((group) => {
 		ScrollTrigger.create({
-			trigger: `.${group}-group`, // класс секций группы
+			trigger: `.${group}-group`,
 			start: "top center",
 			end: "bottom center",
 			onEnter: () => crossfade(group),
 			onEnterBack: () => crossfade(group),
 		});
 	});
+
+	// let currentVolume = 0.1;
+	// let currentSong = null;
+	// const songName = document.querySelector(".song-name");
+	// const tracks = {
+	// 	metallica: document.getElementById("metallica-song"),
+	// 	megadeath: document.getElementById("megadeath-song"),
+	// 	pantera: document.getElementById("pantera-song"),
+	// };
+
+	// // начальная громкость
+	// Object.values(tracks).forEach((track) => {
+	// 	track.volume = 0;
+	// 	track.pause();
+	// });
+
+	// // флаг, чтобы музыка стартовала только после клика
+	// let started = false;
+	// document.addEventListener("click", () => {
+	// 	if (!started) {
+	// 		// Запускаем только первый трек
+	// 		const firstTrack = tracks.metallica;
+	// 		firstTrack.play();
+	// 		firstTrack.volume = currentVolume;
+	// 		currentSong = firstTrack;
+	// 		songName.textContent = "Metallica - Seek and Destroyed";
+
+	// 		started = true;
+	// 	}
+	// });
+
+	// // функция плавного переключения треков
+	// function crossfade(toPlay) {
+	// 	Object.entries(tracks).forEach(([name, track]) => {
+	// 		if (name === toPlay) {
+	// 			currentSong = track;
+	// 			// если трек ещё не был запущен
+	// 			if (track.paused) track.play();
+
+	// 			songName.textContent =
+	// 				name === "metallica"
+	// 					? "Metallica - Seek and Destroyed"
+	// 					: name === "megadeath"
+	// 					? "Megadeath - Holy Wars"
+	// 					: "Pantera - Domination";
+
+	// 			gsap.to(track, {
+	// 				volume: currentVolume,
+	// 				duration: 1.5,
+	// 				ease: "power2.out",
+	// 			});
+	// 		} else {
+	// 			gsap.to(track, {
+	// 				volume: 0,
+	// 				duration: 1.5,
+	// 				ease: "power2.out",
+	// 				onComplete: () => track.pause(),
+	// 			});
+	// 		}
+	// 	});
+	// }
+
+	// // ScrollTrigger для каждой группы
+	// ["metallica", "megadeath", "pantera"].forEach((group) => {
+	// 	ScrollTrigger.create({
+	// 		trigger: `.${group}-group`,
+	// 		start: "top center",
+	// 		end: "bottom center",
+	// 		onEnter: () => crossfade(group),
+	// 		onEnterBack: () => crossfade(group),
+	// 	});
+	// });
+
+	// let currentVolume = 0.1;
+	// let currentSong = null; // сюда пишем активный трек
+	// const songName = document.querySelector(".song-name");
+	// const tracks = {
+	// 	metallica: document.getElementById("metallica-song"),
+	// 	megadeath: document.getElementById("megadeath-song"),
+	// 	pantera: document.getElementById("pantera-song"),
+	// };
+
+	// // начальная громкость
+	// Object.values(tracks).forEach((track) => {
+	// 	track.volume = 0;
+	// });
+
+	// // флаг, чтобы музыка стартовала только после клика
+	// let started = false;
+	// document.addEventListener("click", () => {
+	// 	if (!started) {
+	// 		Object.values(tracks).forEach((track) => track.play());
+	// 		started = true;
+	// 	}
+	// });
+
+	// // функция плавного переключения треков
+	// function crossfade(toPlay) {
+	// 	Object.entries(tracks).forEach(([name, track]) => {
+	// 		if (name === toPlay) {
+	// 			currentSong = track;
+	// 			track.play();
+	// 			name === "metallica"
+	// 				? (songName.textContent = "Metallica - Seek and Destroyed")
+	// 				: name === "megadeath"
+	// 				? (songName.textContent = "Megadeath - Holy Wars")
+	// 				: (songName.textContent = "Pantera - Domination");
+
+	// 			// громкость всегда тянем к текущему значению слайдера
+	// 			gsap.to(track, {
+	// 				volume: currentVolume,
+	// 				duration: 1.5,
+	// 				ease: "power2.out",
+	// 			});
+	// 		} else {
+	// 			gsap.to(track, {
+	// 				volume: 0,
+	// 				duration: 1.5,
+	// 				ease: "power2.out",
+	// 				onComplete: () => track.pause(),
+	// 			});
+	// 		}
+	// 	});
+	// }
+
+	// // ScrollTrigger для каждой группы
+	// ["metallica", "megadeath", "pantera"].forEach((group) => {
+	// 	ScrollTrigger.create({
+	// 		trigger: `.${group}-group`, // класс секций группы
+	// 		start: "top center",
+	// 		end: "bottom center",
+	// 		onEnter: () => crossfade(group),
+	// 		onEnterBack: () => crossfade(group),
+	// 	});
+	// });
 
 	// mute
 	mutedButton.addEventListener("click", () => {

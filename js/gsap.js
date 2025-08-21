@@ -349,7 +349,7 @@ window.addEventListener("DOMContentLoaded", () => {
 		yPercent: IsSmallMobile
 			? "+=305"
 			: IsMediumMobile
-			? "+=320"
+			? "+=310"
 			: IsMobile
 			? "+=325"
 			: IsMedium
@@ -528,7 +528,7 @@ window.addEventListener("DOMContentLoaded", () => {
 		yPercent: IsSmallMobile
 			? "+=160"
 			: IsMediumMobile
-			? "+=200"
+			? "+=170"
 			: IsMobile
 			? "+=110"
 			: IsMedium

@@ -1,0 +1,221 @@
+@media (max-width: 1921px) {
+  .guitar-img {
+    width: 900px;
+  }
+  .hero__section h1 {
+    font-size: 250px;
+  }
+  .section__hero-megadeath h1 {
+    font-size: 160px;
+  }
+  .pantera-hero__section .guitar-img {
+    width: 400px;
+  }
+  .dean-info__section .esp__photo img {
+    width: 200px;
+  }
+}
+@media (max-width: 1441px) {
+  .esp__info-section .esp__photo img {
+    width: 200px;
+  }
+  .esp__info-section .esp__photo :not(:first-child) {
+    margin-top: -50px;
+  }
+  .section__video-metallica {
+    padding: 0;
+  }
+  .dean-info__section .esp__photo img {
+    width: 160px;
+  }
+  .dean-info__section .esp__photo :last-child {
+    transform: translateX(0) rotate(30deg);
+  }
+  .dean-info__section .esp__dis h2 {
+    font-size: 88px;
+  }
+}
+@media (max-width: 1025px) {
+  .hero__section h1 {
+    font-size: 160px;
+  }
+  .hero__section .guitar-img {
+    width: 800px;
+  }
+  .section__hero-megadeath h1 {
+    font-size: 100px;
+  }
+  .esp__info-section .esp__photo img {
+    width: 200px;
+  }
+  .esp__info-section .esp__photo :not(:first-child) {
+    margin-top: -50px;
+  }
+  .esp__info-section .esp__photo :last-child {
+    transform: translateX(0px) rotate(20deg);
+  }
+  .section__video-metallica video {
+    top: 0;
+  }
+  .section__video-metallica .video__content-metallica {
+    min-height: calc(100vh - 100px);
+  }
+  .section__video-metallica .video__content-metallica .content__left-side {
+    width: 40%;
+  }
+  .jackson__info-section .esp__photo :nth-child(2) {
+    transform: translateX(-50px);
+  }
+  .jackson__info-section h2 {
+    font-size: 60px;
+  }
+  .section__video-megadeath h2 {
+    font-size: 60px;
+    text-align: center;
+  }
+  .pantera-hero__section h1 {
+    font-size: 200px;
+  }
+}
+@media (max-width: 769px) {
+  #volume-slider {
+    display: none;
+  }
+  .header__container nav {
+    display: none;
+  }
+  .hero__section h1 {
+    font-size: 120px;
+  }
+  .section__hero-megadeath h1 {
+    font-size: 70px;
+  }
+  .jackson__info-section .esp__dis h2 {
+    text-align: end;
+  }
+  .jackson__info-section .esp__dis p {
+    text-align: end;
+  }
+  .pantera-hero__section h1 {
+    font-size: 150px;
+  }
+  .pantera-hero__section .guitar-img {
+    width: 300px;
+  }
+  .dean-info__section .esp__dis h2 {
+    font-size: 60px;
+  }
+  .section__video-pantera .video__content-pantera h2 {
+    font-size: 80px;
+  }
+  .section__video-pantera .video__content-pantera .content__left-side {
+    width: 70%;
+  }
+}
+@media (max-width: 500px) {
+  #volume-slider {
+    width: 100px;
+  }
+  .header__container .song-name {
+    font-size: 20px;
+  }
+  .header__container .song-button button {
+    padding: 10px;
+  }
+  .hero__section {
+    padding-bottom: 0px;
+  }
+  h2 {
+    font-size: 68px;
+  }
+  .hero__section h1 {
+    font-size: 70px;
+  }
+  .hero__section .guitar-img {
+    width: 500px;
+    transform: translateX(-50%) translateY(-50%) rotate(-60deg);
+  }
+  .esp__info-section {
+    padding: 100px 0px 50px 0px;
+    height: fit-content;
+    min-height: fit-content;
+  }
+  .esp__info-section .esp__dis {
+    position: relative;
+    z-index: 3;
+  }
+  .esp__info-section .esp__dis p {
+    font-size: 20px;
+  }
+  .esp__info-section .esp__photo img {
+    width: 160px;
+  }
+  .esp__info-section .esp__photo :nth-child(2) {
+    transform: translateX(20px);
+  }
+  .esp__info-section .esp__photo :nth-child(3) {
+    margin-top: 0;
+  }
+  .section__video-metallica .video__content-metallica .content__left-side {
+    left: 20px;
+  }
+  .section__hero-megadeath h1 {
+    font-size: 70px;
+  }
+  .section__hero-megadeath .guitar-img {
+    width: 600px;
+    transform: translateX(-50%) translateY(-50%) rotate(-70deg);
+  }
+  .jackson__info-section {
+    min-height: fit-content;
+  }
+  .jackson__info-section h2 {
+    font-size: 40px;
+  }
+  .jackson__info-section p {
+    font-size: 18px;
+  }
+  .jackson__info-section .esp__photo img {
+    width: 160px;
+  }
+  .jackson__info-section .esp__photo :nth-child(2) {
+    transform: translateX(0px);
+  }
+  .jackson__info-section .esp__photo :nth-child(3) {
+    margin-top: 0;
+  }
+  .pantera-hero__section h1 {
+    font-size: 100px;
+  }
+  .pantera-hero__section .guitar-img {
+    width: 200px;
+    transform: translateX(-50%) translateY(-50%) rotate(20deg);
+  }
+  .pantera-hero__section .pantera-hero__title-span {
+    left: 50%;
+  }
+  .dean-info__section .esp__dis {
+    width: 50%;
+    position: relative;
+    z-index: 3;
+  }
+  .dean-info__section .esp__dis h2 {
+    font-size: 54px;
+    text-align: center;
+  }
+  .dean-info__section .esp__photo :nth-child(2) {
+    transform: translateX(0) !important;
+  }
+  .section__video-pantera .video__content-pantera .content__left-side {
+    top: 5%;
+    width: 100%;
+  }
+  .section__video-pantera .video__content-pantera .content__left-side p {
+    width: 80%;
+  }
+}
+@media (max-width: 401px) {
+  .hero__section h1 {
+    font-size: 62px;
+  }
+}/*# sourceMappingURL=media.css.map */

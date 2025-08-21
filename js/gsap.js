@@ -10,7 +10,6 @@ const IsBigScreen =
 	!IsSmallMobile &&
 	!IsMedium &&
 	!IsLaptope;
-// const displayHeight = window.innerHeight < 850;
 if ("scrollRestoration" in history) {
 	history.scrollRestoration = "manual";
 }
@@ -18,19 +17,6 @@ window.scrollTo(0, 0);
 
 window.addEventListener("DOMContentLoaded", () => {
 	gsap.registerPlugin(ScrollTrigger, SplitText);
-
-	// const videos = document.querySelectorAll("video");
-
-	// videos.forEach((video) => {
-	// 	video.muted = true; // важно для мобильных браузеров
-	// 	video
-	// 		.play()
-	// 		.then(() => {
-	// 			video.pause();
-	// 			video.currentTime = 0;
-	// 		})
-	// 		.catch((err) => console.log("Видео не удалось запустить:", err));
-	// });
 
 	const lenis = new Lenis({
 		duration: 3,
@@ -87,8 +73,6 @@ window.addEventListener("DOMContentLoaded", () => {
 				? "bottom 35%"
 				: "bottom 5%",
 			scrub: 1,
-			// pin: true,
-			// markers: true,
 		},
 	});
 
@@ -96,7 +80,7 @@ window.addEventListener("DOMContentLoaded", () => {
 		yPercent: IsSmallMobile
 			? "+=360"
 			: IsMediumMobile
-			? "+=400"
+			? "+=385"
 			: IsMobile
 			? "+=240"
 			: IsLaptope
@@ -105,7 +89,6 @@ window.addEventListener("DOMContentLoaded", () => {
 		scale: IsLaptope ? 0.6 : IsMobile ? 0.8 : 0.7,
 		rotation: -90,
 		transformOrigin: "center center",
-		// pin: true,
 	});
 
 	const espInfoTimeline = gsap.timeline({
@@ -119,9 +102,6 @@ window.addEventListener("DOMContentLoaded", () => {
 				? "top 35%"
 				: "top 8%",
 			end: "10% 10%",
-			// scrub: 1,
-			// pin: true,
-			// markers: true,
 		},
 	});
 
@@ -129,7 +109,6 @@ window.addEventListener("DOMContentLoaded", () => {
 		.from("#esp__dis", {
 			xPercent: -50,
 			opacity: 0,
-			// pin: true,
 		})
 		.from("#esp__photo img", {
 			xPercent: 50,
@@ -138,7 +117,7 @@ window.addEventListener("DOMContentLoaded", () => {
 		});
 	let videoPlayed = false;
 	const metallicaVideo = document.getElementById("metallica-video");
-	metallicaVideo.muted = true; // важно для мобильных
+	metallicaVideo.muted = true;
 	metallicaVideo
 		.play()
 		.then(() => {
@@ -167,8 +146,6 @@ window.addEventListener("DOMContentLoaded", () => {
 				? "10% 25%"
 				: "top top",
 			scrub: 1,
-			// pin: true,
-			// markers: true,
 			onUpdate: (self) => {
 				if (self.progress >= 1 && !videoPlayed) {
 					gsap.to(guitar, { opacity: 0, duration: 0.3 });
@@ -210,7 +187,6 @@ window.addEventListener("DOMContentLoaded", () => {
 		rotation: -40,
 
 		x: 60,
-		// transformOrigin: "center center",
 		onStart: () => {
 			const guitar = document.getElementById("metallica-guitar");
 
@@ -243,7 +219,6 @@ window.addEventListener("DOMContentLoaded", () => {
 				start: "top 25%",
 				end: "top top",
 				toggleActions: "play play play reverse",
-				// markers: true,
 			},
 		})
 		.from("#megadeath-guitar", {
@@ -262,7 +237,6 @@ window.addEventListener("DOMContentLoaded", () => {
 		.from(heroTitleMegadeathSpan.words, {
 			opacity: 0,
 			x: 220,
-			// stagger: 0.15,
 			duration: 1,
 			ease: "back.out(1.7)",
 		});
@@ -279,8 +253,6 @@ window.addEventListener("DOMContentLoaded", () => {
 				? "bottom 35%"
 				: "bottom 12%",
 			scrub: 1,
-			// pin: true,
-			// markers: true,
 		},
 	});
 
@@ -297,7 +269,6 @@ window.addEventListener("DOMContentLoaded", () => {
 		scale: IsLaptope ? 0.6 : IsMobile ? 0.8 : 0.7,
 		rotation: -90,
 		transformOrigin: "center center",
-		// pin: true,
 	});
 	MegadeathHeroTimeline.to(
 		[".hero__title-span-megadeath", ".hero__title-megadeath"],
@@ -311,16 +282,12 @@ window.addEventListener("DOMContentLoaded", () => {
 			trigger: "#jackson__info-section",
 			start: IsMediumMobile ? "top 40%" : IsMobile ? "top 25%" : "top 45%",
 			end: "10% 10%",
-			// scrub: 1,
-			// pin: true,
-			// markers: true,
 		},
 	});
 
 	JacksonInfoTimeline.from("#jackson__dis", {
 		xPercent: -50,
 		opacity: 0,
-		// pin: true,
 	}).from("#jackson__photo img", {
 		xPercent: 50,
 		opacity: 0,
@@ -331,7 +298,7 @@ window.addEventListener("DOMContentLoaded", () => {
 	const megadeathGuitar = document.getElementById("megadeath-guitar");
 	const megadeathVideo = document.getElementById("megadeath-video");
 
-	megadeathVideo.muted = true; // важно для мобильных
+	megadeathVideo.muted = true;
 	megadeathVideo
 		.play()
 		.then(() => {
@@ -361,8 +328,6 @@ window.addEventListener("DOMContentLoaded", () => {
 				? "top 5%"
 				: "top 10%",
 			scrub: 1,
-			// pin: true,
-			// markers: true,
 			onUpdate: (self) => {
 				if (self.progress >= 1 && !megadeathVideoPlayed) {
 					gsap.to(megadeathGuitar, { opacity: 0, duration: 0.3 });
@@ -429,7 +394,6 @@ window.addEventListener("DOMContentLoaded", () => {
 				start: "top 25%",
 				end: "top top",
 				toggleActions: "play play play reverse",
-				// markers: true,
 			},
 		})
 		.from("#pantera-guitar", {
@@ -448,7 +412,6 @@ window.addEventListener("DOMContentLoaded", () => {
 		.from(heroTitlePanteraSpan.words, {
 			opacity: 0,
 			y: 320,
-			// stagger: 0.15,
 			duration: 1,
 			ease: "back.out(1.7)",
 		});
@@ -465,8 +428,6 @@ window.addEventListener("DOMContentLoaded", () => {
 				? "bottom 35%"
 				: "bottom 12%",
 			scrub: 1,
-			// pin: true,
-			// markers: true,
 		},
 	});
 
@@ -491,7 +452,6 @@ window.addEventListener("DOMContentLoaded", () => {
 			: 0.5,
 		rotation: 0,
 		transformOrigin: "center center",
-		// pin: true,
 		markers: true,
 	});
 
@@ -507,7 +467,6 @@ window.addEventListener("DOMContentLoaded", () => {
 	DeanInfoTimeline.from("#dean__dis", {
 		xPercent: -50,
 		opacity: 0,
-		// pin: true,
 	}).from("#dean__photo img", {
 		xPercent: 50,
 		opacity: 0,
@@ -518,7 +477,7 @@ window.addEventListener("DOMContentLoaded", () => {
 	const panteraGuitar = document.getElementById("pantera-guitar");
 	const panteraVideo = document.getElementById("pantera-video");
 
-	panteraVideo.muted = true; // важно для мобильных
+	panteraVideo.muted = true;
 	panteraVideo
 		.play()
 		.then(() => {
@@ -548,8 +507,6 @@ window.addEventListener("DOMContentLoaded", () => {
 				? "top 5%"
 				: "top 10%",
 			scrub: 1,
-			// pin: true,
-			markers: true,
 			onUpdate: (self) => {
 				if (self.progress >= 1 && !panteraVideoPlayed) {
 					gsap.to(panteraGuitar, { opacity: 0, duration: 0.3 });
@@ -633,10 +590,10 @@ window.addEventListener("DOMContentLoaded", () => {
 			duration: 0.3,
 			onComplete: () => {
 				if (megadeathGuitar.classList.contains("black")) {
-					megadeathGuitar.src = "./img/megaWhite.png";
+					megadeathGuitar.src = "./img/mega.png";
 					megadeathGuitar.classList.remove("black");
 				} else {
-					megadeathGuitar.src = "./img/mega.png";
+					megadeathGuitar.src = "./img/megadeathwhite.png";
 					megadeathGuitar.classList.add("black");
 				}
 
@@ -675,26 +632,22 @@ window.addEventListener("DOMContentLoaded", () => {
 		pantera: document.getElementById("pantera-song"),
 	};
 
-	// начальная громкость
 	Object.values(tracks).forEach((track) => {
 		track.volume = 0;
 		track.pause();
 	});
 
-	// флаг, чтобы музыка стартовала только после клика
 	let started = false;
 	document.addEventListener("click", () => {
 		if (!started) {
-			// разрешаем все треки для будущих crossfade
 			Object.values(tracks).forEach((track) => {
-				track.muted = true; // важно для автоплей на мобилке
+				track.muted = true;
 				track.play();
 				track.pause();
 				track.currentTime = 0;
-				track.muted = false; // после инициализации можно включить звук для crossfade
+				track.muted = false;
 			});
 
-			// Определяем активную группу на экране
 			const groups = ["metallica", "megadeath", "pantera"];
 			let activeGroup = groups[0];
 
@@ -723,7 +676,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
 				songName.textContent =
 					name === "metallica"
-						? "Metallica - Seek and Destroyed"
+						? "Metallica - Muster Of Puppets"
 						: name === "megadeath"
 						? "Megadeath - Holy Wars"
 						: "Pantera - Domination";
@@ -744,7 +697,6 @@ window.addEventListener("DOMContentLoaded", () => {
 		});
 	}
 
-	// ScrollTrigger для каждой группы
 	["metallica", "megadeath", "pantera"].forEach((group) => {
 		ScrollTrigger.create({
 			trigger: `.${group}-group`,
@@ -755,15 +707,11 @@ window.addEventListener("DOMContentLoaded", () => {
 		});
 	});
 
-	// mute
 	mutedButton.addEventListener("click", () => {
 		if (currentSong) {
-			// если громкость = 0 и уже muted → не меняем иконку
 			if (currentVolume === 0 && currentSong.muted) {
 				return;
 			}
-
-			// обычный toggle mute
 			currentSong.muted = !currentSong.muted;
 			mutedButtonIcon.src = currentSong.muted
 				? "./img/volumeIconOff.png"
@@ -771,7 +719,6 @@ window.addEventListener("DOMContentLoaded", () => {
 		}
 	});
 
-	// громкость через ползунок
 	volumeSlider.addEventListener("input", (e) => {
 		currentVolume = parseFloat(e.target.value);
 
@@ -780,7 +727,7 @@ window.addEventListener("DOMContentLoaded", () => {
 				currentSong.muted = false;
 				mutedButtonIcon.src = "./img/volumeIcon.png";
 			}
-			currentSong.volume = currentVolume; // применяем напрямую
+			currentSong.volume = currentVolume;
 
 			if (currentVolume === 0) {
 				currentSong.muted = true;

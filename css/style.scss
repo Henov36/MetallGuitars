@@ -78,7 +78,6 @@ section {
 	min-height: 100vh;
 	position: relative;
 	padding: 100px 0px;
-	// overflow: hidden;
 }
 
 .container__standart {
@@ -117,8 +116,6 @@ section {
 	-webkit-background-clip: text;
 	-webkit-text-fill-color: transparent;
 	background-clip: text;
-	// color: transparent;
-	// display: inline-block;
 }
 
 .content__left-side {
@@ -172,10 +169,8 @@ video {
 
 #volume-slider {
 	-webkit-appearance: none;
-	// appearance: none;
 	width: 150px;
 	height: 10px;
-	// background: linear-gradient(to right, rgb(30, 77, 32), gray); /* трек */
 	border-radius: 3px;
 	border: 1px solid white;
 }
@@ -215,15 +210,6 @@ video {
 	background: var(--main-color);
 	& h1 {
 		font-family: "Metallica Font", sans-serif;
-		// font-size: 300px;
-		// width: 100%;
-		// font-weight: 400;
-		// position: absolute;
-		// text-align: center;
-		// top: 35%;
-		// left: 50%;
-		// transform: translateX(-50%) translateY(-50%);
-		// pointer-events: none;
 	}
 	.hero__title-span {
 		top: 50%;
@@ -273,7 +259,6 @@ video {
 }
 .esp__info-section {
 	background-color: var(--main-color);
-	// background-color: aliceblue;
 	overflow: hidden;
 }
 

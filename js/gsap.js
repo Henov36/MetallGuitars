@@ -10,6 +10,7 @@ const IsBigScreen =
 	!IsSmallMobile &&
 	!IsMedium &&
 	!IsLaptope;
+const Height = window.innerHeight;
 if ("scrollRestoration" in history) {
 	history.scrollRestoration = "manual";
 }
@@ -85,6 +86,8 @@ window.addEventListener("DOMContentLoaded", () => {
 			? "+=240"
 			: IsLaptope
 			? "+=210"
+			: Height > 1020
+			? "+=280"
 			: "+=200",
 		scale: IsLaptope ? 0.6 : IsMobile ? 0.8 : 0.7,
 		rotation: -90,
@@ -175,6 +178,10 @@ window.addEventListener("DOMContentLoaded", () => {
 			? "+=240"
 			: IsBigScreen || IsLaptope
 			? "+=210"
+			: Height > 1180
+			? "+=350"
+			: Height > 1020
+			? "+=285"
 			: "+=260",
 		scale:
 			IsMediumMobile || IsSmallMobile
@@ -265,6 +272,10 @@ window.addEventListener("DOMContentLoaded", () => {
 			? "+=290"
 			: IsLaptope
 			? "+=210"
+			: Height > 1180
+			? "+=290"
+			: Height > 1020
+			? "+=280"
 			: "+=220",
 		scale: IsLaptope ? 0.6 : IsMobile ? 0.8 : 0.7,
 		rotation: -90,
@@ -356,6 +367,10 @@ window.addEventListener("DOMContentLoaded", () => {
 			? "+=240"
 			: IsBigScreen || IsLaptope
 			? "+=245"
+			: Height > 1180
+			? "+=400"
+			: Height > 1020
+			? "+=350"
 			: "+=235",
 		scale:
 			IsMediumMobile || IsSmallMobile
@@ -442,12 +457,16 @@ window.addEventListener("DOMContentLoaded", () => {
 			? "+=80"
 			: IsBigScreen
 			? "+=90"
+			: Height > 1020
+			? "+=100"
 			: "+=75",
 		scale: IsLaptope
 			? 0.6
 			: IsMobile
 			? 0.8
 			: IsMediumMobile || IsSmallMobile
+			? 0.7
+			: Height > 1020
 			? 0.7
 			: 0.5,
 		rotation: 0,
@@ -537,6 +556,10 @@ window.addEventListener("DOMContentLoaded", () => {
 			? "+=70"
 			: IsBigScreen
 			? "+=90"
+			: Height > 1180
+			? "+=140"
+			: Height > 1020
+			? "+=110"
 			: "+=82",
 		scale:
 			IsMediumMobile || IsSmallMobile
@@ -547,7 +570,7 @@ window.addEventListener("DOMContentLoaded", () => {
 				? 0.7
 				: IsMedium
 				? 0.6
-				: IsBigScreen
+				: IsBigScreen || Height > 1020
 				? 1
 				: 0.8,
 		xPercent: IsBigScreen ? 0 : IsMedium ? -25 : -20,

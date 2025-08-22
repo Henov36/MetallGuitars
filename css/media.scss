@@ -153,6 +153,13 @@
 			}
 		}
 	}
+	.section__video-megadeath{
+		.video__content-megadeath{
+			.content__left-side{
+				left: 20px;
+			}
+		}
+	}
 	.pantera-hero__section {
 		& h1 {
 			font-size: 150px;
@@ -176,6 +183,7 @@
 			}
 			.content__left-side {
 				width: 70%;
+				left: 20px;
 			}
 		}
 	}

@@ -96,6 +96,9 @@
   .jackson__info-section .esp__dis p {
     text-align: end;
   }
+  .section__video-megadeath .video__content-megadeath .content__left-side {
+    left: 20px;
+  }
   .pantera-hero__section h1 {
     font-size: 150px;
   }
@@ -110,6 +113,7 @@
   }
   .section__video-pantera .video__content-pantera .content__left-side {
     width: 70%;
+    left: 20px;
   }
 }
 @media (max-width: 500px) {

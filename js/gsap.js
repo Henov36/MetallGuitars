@@ -190,6 +190,8 @@ window.addEventListener("DOMContentLoaded", () => {
 				? 0.6
 				: IsMedium
 				? 0.5
+				: Height > 1020
+				? 0.8
 				: 0.7,
 		rotation: -40,
 
